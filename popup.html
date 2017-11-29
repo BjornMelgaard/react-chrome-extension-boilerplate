@@ -1,0 +1,63 @@
+<head>
+  <title>Nuuz</title>
+
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+
+  <!--Font awsome-->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <!--PT Sans-->
+  <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+
+  <!--Jquery-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+
+  <link type="text/css" rel="stylesheet" media="screen" href="/application.css">
+
+  <script src="oauth2/oauth2.js"></script>
+  <script src="popup.js"></script>
+</head>
+
+<body>
+  <h3>You logged as <span id="current-user"></span></h3>
+
+  <div class="alert alert-success" id="success-message" style="display: none">
+    Story was successfully published
+  </div>
+
+  <div class="alert alert-warning" id="logout-message" style="display: none">
+    You logged out
+  </div>
+
+  <form id="story-form">
+    <div class="form-group">
+      <label for="story-link" >Link to your story</label>
+      <input class="form-control" id="story-link" minlength="2" type="url" required>
+    </div>
+
+    <div class="form-group">
+      <label for="story-rank">Select list:</label>
+      <select class="form-control" id="story-rank">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="story-highlight" >Highlight (optional)</label>
+      <textarea class="form-control" rows="5" id="story-highlight"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add story</button>
+    <button id="logout" class="btn btn-danger pull-right">Exit</button>
+  </form>
+
+</body>
