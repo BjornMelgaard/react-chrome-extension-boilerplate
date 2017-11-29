@@ -50,7 +50,6 @@ function post(url, params, headers) {
   })
 }
 
-//
 function get(url, headers) {
   return $.ajax({
     method: "GET",
@@ -59,6 +58,15 @@ function get(url, headers) {
   })
 }
 
+function del(url, headers) {
+  return $.ajax({
+    method: "DELETE",
+    url: API_HOST + url,
+    headers: headers,
+  })
+}
+
+//
 function getCurrentUser() {
   return get('/api/v2/users/current', authHeaders())
 }
@@ -117,8 +125,7 @@ doorkeeper.authorize(function() {
   $("#logout").click(function(e) {
     e.preventDefault()
     localStorage.clear()
-    $("#logout-message").show('slow')
-    console.log(localStorage)
+    chrome.tabs.create({ url: API_HOST + '/session/end' });
   })
 });
 
