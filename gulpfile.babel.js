@@ -13,7 +13,9 @@ const createRunSequence = (...args) => cb => runSequence(...args, cb)
 gulp.task('clean', del.bind(null, ['dist']))
 
 gulp.task('watch', ['default'], () => {
-  gulp.watch('src/**/*', ['default'])
+  gulp.watch('src/**/*', ['default']).on('error', err => {
+    console.log(err.toString())
+  })
 })
 
 gulp.task('notPopupJs', function() {
@@ -33,6 +35,9 @@ gulp.task('popupJs', () =>
                 [
                   'env',
                   {
+                    targets: {
+                      browsers: ['last 2 Chrome versions'],
+                    },
                     modules: false,
                   },
                 ],
@@ -51,6 +56,6 @@ gulp.task('popupJs', () =>
     .pipe(gulp.dest('dist/popup'))
 )
 
-gulp.task('build', ['notPopupJs', 'popupJs'])
+gulp.task('build', createRunSequence(['notPopupJs', 'popupJs']))
 
 gulp.task('default', ['clean'], createRunSequence('build'))

@@ -1,7 +1,5 @@
 var API_HOST = 'http://localhost:3000'
 
-console.log('asdf')
-
 OAuth2.adapter('doorkeeper', {
   /**
    * @return {URL} URL to the page that returns the authorization code

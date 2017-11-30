@@ -385,7 +385,7 @@ OAuth2.loadAdapter = function(adapterName, callback) {
 OAuth2.adapter = function(name, impl) {
   var implementing =
     'authorizationCodeURL redirectURL accessTokenURL ' +
-    'accessTokenMethod accessTokenParams accessToken'
+    'accessTokenMethod accessTokenParams parseAccessToken'
 
   // Check for missing methods
   implementing.split(' ').forEach(function(method, index) {
