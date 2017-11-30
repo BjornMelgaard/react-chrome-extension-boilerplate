@@ -1,4 +1,4 @@
-import doorkeeper from '../../doorkeeper'
+import * as doorkeeper from '../../doorkeeper'
 
 export function authHeaders() {
   const accessToken = doorkeeper.getAccessToken()

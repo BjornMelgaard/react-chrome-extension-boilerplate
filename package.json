@@ -28,7 +28,9 @@
     "prettier": "^1.8.2",
     "rollup": "^0.52.0",
     "rollup-plugin-babel": "^3.0.2",
+    "rollup-plugin-commonjs": "^8.2.6",
     "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-uglify": "^2.0.1",
     "run-sequence": "^2.2.0"
   },
   "scripts": {
@@ -48,6 +50,7 @@
   "dependencies": {
     "bootstrap": "^4.0.0-beta.2",
     "bootstrap-material-design": "^4.0.0-beta.4",
+    "chrome-promise": "^2.1.1",
     "gulp-sass": "^3.1.0"
   }
 }

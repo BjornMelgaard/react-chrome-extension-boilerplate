@@ -8,7 +8,9 @@ import tildeImporter from 'node-sass-tilde-importer'
 // rollup
 import rollup from 'gulp-better-rollup'
 import babel from 'rollup-plugin-babel'
-import resolve from 'rollup-plugin-node-resolve'
+import nodeResolve from 'rollup-plugin-node-resolve'
+import commonjs from 'rollup-plugin-commonjs'
+// import uglify      from 'rollup-plugin-uglify';
 
 const createRunSequence = (...args) => cb => runSequence(...args, cb)
 
@@ -61,11 +63,20 @@ gulp.task('popupJs', () =>
               plugins: ['external-helpers'],
               babelrc: false,
             }),
-            resolve(),
+            nodeResolve({
+              jsnext:  true,
+              module:  true,
+              main:    true, // for commonjs modules that have an index.js
+              browser: true,
+            }),
+            commonjs({
+              include:      'node_modules/**',
+              ignoreGlobal: true, // Default: false
+            }),
           ],
         },
         {
-          format: 'iife',
+          format: 'cjs',
         }
       )
     )

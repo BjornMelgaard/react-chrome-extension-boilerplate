@@ -1,5 +1,5 @@
 import { API_HOST } from '../config'
-import doorkeeper from '../doorkeeper'
+import * as doorkeeper from '../doorkeeper'
 
 export function setupLogoutBtn() {
   $('#logout').click(function(e) {

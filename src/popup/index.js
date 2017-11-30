@@ -4,7 +4,7 @@ import {
   addSubmitHandler,
   setupLogoutBtn,
 } from './controllers'
-import doorkeeper from './doorkeeper'
+import * as doorkeeper from './doorkeeper'
 
 // TODO: use chrome.identity api instead of oauth2 lib
 doorkeeper.authorize(function() {
