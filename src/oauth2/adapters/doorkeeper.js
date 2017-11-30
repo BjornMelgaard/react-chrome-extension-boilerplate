@@ -1,4 +1,4 @@
-var API_HOST = 'http://localhost:3000';
+var API_HOST = 'http://localhost:3000'
 
 OAuth2.adapter('doorkeeper', {
   /**
@@ -6,12 +6,14 @@ OAuth2.adapter('doorkeeper', {
    */
   authorizationCodeURL: function(config) {
     console.log(config)
-    var url = API_HOST + '/oauth/authorize?response_type=code&client_id={{CLIENT_ID}}&redirect_uri={{REDIRECT_URI}}&scope={{API_SCOPE}}'
+    var url =
+      API_HOST +
+      '/oauth/authorize?response_type=code&client_id={{CLIENT_ID}}&redirect_uri={{REDIRECT_URI}}&scope={{API_SCOPE}}'
     console.log(url)
     return url
-        .replace('{{CLIENT_ID}}', config.clientId)
-        .replace('{{REDIRECT_URI}}', this.redirectURL(config))
-        .replace('{{API_SCOPE}}', config.apiScope);
+      .replace('{{CLIENT_ID}}', config.clientId)
+      .replace('{{REDIRECT_URI}}', this.redirectURL(config))
+      .replace('{{API_SCOPE}}', config.apiScope)
   },
 
   /**
@@ -19,32 +21,32 @@ OAuth2.adapter('doorkeeper', {
    * script into
    */
   redirectURL: function(config) {
-    return API_HOST + '/robots.txt';
+    return API_HOST + '/robots.txt'
   },
 
   /**
    * @return {String} Authorization code for fetching the access token
    */
   parseAuthorizationCode: function(url) {
-    var error = url.match(/\?error=(.+)/);
+    var error = url.match(/\?error=(.+)/)
     if (error) {
-      throw 'Error getting authorization code: ' + error[1];
+      throw 'Error getting authorization code: ' + error[1]
     }
-    return url.match(/\?code=([\w\/\-]+)/)[1];
+    return url.match(/\?code=([\w\/\-]+)/)[1]
   },
 
   /**
    * @return {URL} URL to the access token providing endpoint
    */
   accessTokenURL: function() {
-    return API_HOST + '/oauth/token';
+    return API_HOST + '/oauth/token'
   },
 
   /**
    * @return {String} http method to use to get access tokens
    */
   accessTokenMethod: function() {
-    return 'POST';
+    return 'POST'
   },
 
   /**
@@ -56,8 +58,8 @@ OAuth2.adapter('doorkeeper', {
       client_id: config.clientId,
       client_secret: config.clientSecret,
       redirect_uri: this.redirectURL(config),
-      grant_type: 'authorization_code'
-    };
+      grant_type: 'authorization_code',
+    }
   },
 
   /**
@@ -65,10 +67,10 @@ OAuth2.adapter('doorkeeper', {
    * refreshToken {String} and expiresIn {Int}
    */
   parseAccessToken: function(response) {
-    var parsedResponse = JSON.parse(response);
+    var parsedResponse = JSON.parse(response)
     return {
       accessToken: parsedResponse.access_token,
-      expiresIn: parsedResponse.expires_in
-    };
-  }
-});
+      expiresIn: parsedResponse.expires_in,
+    }
+  },
+})

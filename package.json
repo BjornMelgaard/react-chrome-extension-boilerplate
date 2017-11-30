@@ -1,0 +1,47 @@
+{
+  "name": "nuuz-chrome-extension",
+  "private": true,
+  "engines": {
+    "node": ">=0.8.0"
+  },
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-core": "6.26.0",
+    "babel-eslint": "^8.0.2",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-env": "^1.6.1",
+    "del": "^3.0.0",
+    "eslint": "^4.12.1",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "gulp": "^3.9.1",
+    "gulp-better-rollup": "^2.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-copy": "^1.0.1",
+    "gulp-file": "^0.3.0",
+    "gulp-uglify": "^3.0.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^5.0.0",
+    "prettier": "^1.8.2",
+    "rollup": "^0.52.0",
+    "rollup-plugin-babel": "^3.0.2",
+    "rollup-plugin-node-resolve": "^3.0.0"
+  },
+  "scripts": {
+    "lint:base": "eslint --ignore-path .gitignore",
+    "lint": "yarn run lint:base .",
+    "lint:fix": "yarn run lint:base --fix .",
+    "format:base": "prettier --config './.prettierrc.yaml' --ignore-path './.gitignore' --write",
+    "format": "yarn run format:base './**/*.{js,jsx,json}'",
+    "format-fix": "yarn run format && yarn run lint:fix",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.js": [
+      "yarn run format:base",
+      "yarn run lint:base --fix",
+      "git add"
+    ]
+  }
+}
