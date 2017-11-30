@@ -1,4 +1,4 @@
-import { get, authHeaders } from './shared'
+import { post, authHeaders } from './shared'
 
 export function createPage({ url }) {
   const params = {

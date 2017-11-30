@@ -13,11 +13,12 @@
     "del": "^3.0.0",
     "eslint": "^4.12.1",
     "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
     "gulp": "^3.9.1",
     "gulp-better-rollup": "^2.0.0",
-    "gulp-concat": "^2.6.1",
     "gulp-copy": "^1.0.1",
     "gulp-file": "^0.3.0",
     "gulp-uglify": "^3.0.0",
@@ -26,10 +27,11 @@
     "prettier": "^1.8.2",
     "rollup": "^0.52.0",
     "rollup-plugin-babel": "^3.0.2",
-    "rollup-plugin-node-resolve": "^3.0.0"
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "run-sequence": "^2.2.0"
   },
   "scripts": {
-    "lint:base": "eslint --ignore-path .gitignore",
+    "lint:base": "eslint --ignore-path .gitignore --ignore-pattern 'src/oauth2'",
     "lint": "yarn run lint:base .",
     "lint:fix": "yarn run lint:base --fix .",
     "format:base": "prettier --config './.prettierrc.yaml' --ignore-path './.gitignore' --write",

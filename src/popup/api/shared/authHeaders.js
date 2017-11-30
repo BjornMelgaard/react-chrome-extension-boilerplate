@@ -1,5 +1,7 @@
+import doorkeeper from '../../doorkeeper'
+
 export function authHeaders() {
-  var accessToken = doorkeeper.getAccessToken()
+  const accessToken = doorkeeper.getAccessToken()
   return {
     Authorization: `Bearer ${accessToken}`,
   }

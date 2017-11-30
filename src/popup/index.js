@@ -1,9 +1,7 @@
-import * as config from './config'
 import { showCurrentUser, setupForm, setupLogoutBtn } from './view'
+import doorkeeper from './doorkeeper'
 
-var doorkeeper = new OAuth2('doorkeeper', config.doorkeeper)
-
-// main
+// TODO: use chrome.identity api instead of oauth2 lib
 doorkeeper.authorize(function() {
   showCurrentUser()
   setupForm()

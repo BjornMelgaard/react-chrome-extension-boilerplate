@@ -214,7 +214,7 @@ OAuth2.prototype.finishAuth = function() {
   // Loop through existing extension views and excute any stored callbacks.
   function callback(error) {
     console.log('callback')
-    debugger
+
     var views = chrome.extension.getViews()
     for (var i = 0, view; (view = views[i]); i++) {
       if (view['oauth-callback']) {
@@ -389,7 +389,7 @@ OAuth2.adapter = function(name, impl) {
 
   // Check for missing methods
   implementing.split(' ').forEach(function(method, index) {
-    if (!method in impl) {
+    if (!(method in impl)) {
       throw 'Invalid adapter! Missing method: ' + method
     }
   })

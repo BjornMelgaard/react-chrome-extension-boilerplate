@@ -1,3 +1,6 @@
+import { storyData } from './shared'
+import { createPage, createStory } from '../api'
+
 export function setupForm() {
   // disable submit
   $('#story-form').submit(function(event) {
@@ -7,19 +10,19 @@ export function setupForm() {
   // instead use submitHandler
   $('#story-form').validate({
     submitHandler: function(form) {
-      var data = storyData()
+      const data = storyData()
       console.log(data)
       createPage({
         url: data.link,
       }).done(function(pageResp) {
         console.log('pageResp', pageResp)
 
-        var pageId = pageResp.id
+        const pageId = pageResp.id
 
         createStory({
           pageId: pageId,
-          text: data.highlight,
-          rank: data.rank,
+          text:   data.highlight,
+          rank:   data.rank,
         }).done(function(storyResp) {
           console.log('storyResp', storyResp)
           $('#success-message').show('slow')

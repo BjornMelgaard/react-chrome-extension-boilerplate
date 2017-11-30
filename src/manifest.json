@@ -7,23 +7,19 @@
   },
   "browser_action": {
     "default_title": "Nuuz",
-    "default_icon":  "icon128.png",
+    "default_icon": "icon128.png",
     "default_popup": "popup/index.html"
   },
   "content_scripts": [
     {
       "matches": ["http://localhost:3000/robots.txt*"],
-      "js":      ["oauth2/oauth2_inject.js"],
-      "run_at":  "document_start"
+      "js": ["oauth2/oauth2_inject.js"],
+      "run_at": "document_start"
     }
   ],
-  "permissions": [
-    "http://localhost:3000/*",
-    "tabs"
-  ],
-  "web_accessible_resources": [
-    "oauth2/oauth2.html"
-  ],
+  "permissions": ["http://localhost:3000/*", "tabs"],
+  "web_accessible_resources": ["oauth2/oauth2.html"],
   "manifest_version": 2,
-  "content_security_policy": "script-src 'self' https://ajax.googleapis.com https://cdnjs.cloudflare.com; object-src 'self'"
+  "content_security_policy":
+    "script-src 'self' https://ajax.googleapis.com https://cdnjs.cloudflare.com; object-src 'self'"
 }

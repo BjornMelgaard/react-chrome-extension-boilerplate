@@ -12,8 +12,8 @@ export function storyHightlight() {
 
 export function storyData() {
   return {
-    link: storyLink(),
-    rank: storyRank(),
+    link:      storyLink(),
+    rank:      storyRank(),
     highlight: storyHightlight(),
   }
 }
