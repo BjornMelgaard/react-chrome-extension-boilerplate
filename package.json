@@ -24,6 +24,7 @@
     "gulp-uglify": "^3.0.0",
     "husky": "^0.14.3",
     "lint-staged": "^5.0.0",
+    "node-sass-tilde-importer": "^1.0.0",
     "prettier": "^1.8.2",
     "rollup": "^0.52.0",
     "rollup-plugin-babel": "^3.0.2",
@@ -31,19 +32,22 @@
     "run-sequence": "^2.2.0"
   },
   "scripts": {
-    "lint:base": "eslint --ignore-path .gitignore --ignore-pattern 'src/oauth2'",
+    "lint:base":
+      "eslint --ignore-path .gitignore --ignore-pattern 'src/oauth2'",
     "lint": "yarn run lint:base .",
     "lint:fix": "yarn run lint:base --fix .",
-    "format:base": "prettier --config './.prettierrc.yaml' --ignore-path './.gitignore' --write",
+    "format:base":
+      "prettier --config './.prettierrc.yaml' --ignore-path './.gitignore' --write",
     "format": "yarn run format:base './**/*.{js,jsx,json}'",
     "format-fix": "yarn run format && yarn run lint:fix",
     "precommit": "lint-staged"
   },
   "lint-staged": {
-    "*.js": [
-      "yarn run format:base",
-      "yarn run lint:base --fix",
-      "git add"
-    ]
+    "*.js": ["yarn run format:base", "yarn run lint:base --fix", "git add"]
+  },
+  "dependencies": {
+    "bootstrap": "^4.0.0-beta.2",
+    "bootstrap-material-design": "^4.0.0-beta.4",
+    "gulp-sass": "^3.1.0"
   }
 }
