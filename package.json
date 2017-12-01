@@ -1,56 +1,85 @@
 {
-  "name": "nuuz-chrome-extension",
-  "private": true,
-  "engines": {
-    "node": ">=0.8.0"
-  },
-  "devDependencies": {
-    "babel": "^6.23.0",
-    "babel-core": "6.26.0",
-    "babel-eslint": "^8.0.2",
-    "babel-plugin-external-helpers": "^6.22.0",
-    "babel-preset-env": "^1.6.1",
-    "del": "^3.0.0",
-    "eslint": "^4.12.1",
-    "eslint-config-standard": "^10.2.1",
-    "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-node": "^5.2.1",
-    "eslint-plugin-promise": "^3.6.0",
-    "eslint-plugin-standard": "^3.0.1",
-    "gulp": "^3.9.1",
-    "gulp-better-rollup": "^2.0.0",
-    "gulp-copy": "^1.0.1",
-    "gulp-file": "^0.3.0",
-    "gulp-uglify": "^3.0.0",
-    "husky": "^0.14.3",
-    "lint-staged": "^5.0.0",
-    "node-sass-tilde-importer": "^1.0.0",
-    "prettier": "^1.8.2",
-    "rollup": "^0.52.0",
-    "rollup-plugin-babel": "^3.0.2",
-    "rollup-plugin-commonjs": "^8.2.6",
-    "rollup-plugin-node-resolve": "^3.0.0",
-    "rollup-plugin-uglify": "^2.0.1",
-    "run-sequence": "^2.2.0"
-  },
+  "name": "react-chrome-extension-boilerplate",
+  "version": "0.9.0",
+  "description": "Boilerplate for Chrome extension React.js project",
   "scripts": {
-    "lint:base":
-      "eslint --ignore-path .gitignore --ignore-pattern 'src/oauth2'",
+    "dev": "node scripts/dev",
+    "build": "node scripts/build",
+    "compress": "node scripts/compress",
+    "compress-keygen": "crx keygen",
+    "clean": "rimraf build/ dev/ *.zip *.crx",
+    "lint:base": "eslint --ignore-path .gitignore",
     "lint": "yarn run lint:base .",
     "lint:fix": "yarn run lint:base --fix .",
-    "format:base":
-      "prettier --config './.prettierrc.yaml' --ignore-path './.gitignore' --write",
+    "format:base": "prettier --config './.prettierrc.yaml' --ignore-path './.gitignore' --write",
     "format": "yarn run format:base './**/*.{js,jsx,json}'",
     "format-fix": "yarn run format && yarn run lint:fix",
     "precommit": "lint-staged"
   },
   "lint-staged": {
-    "*.js": ["yarn run format:base", "yarn run lint:base --fix", "git add"]
+    "*.js": [
+      "yarn run format:base",
+      "yarn run lint:base --fix",
+      "git add"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jhen0409/react-chrome-extension-boilerplate.git"
+  },
+  "keywords": [
+    "chrome",
+    "extension",
+    "react",
+    "redux",
+    "hot reload",
+    "webpack",
+    "boilerplate"
+  ],
+  "author": "Jhen <developer@jhen.me>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-core": "6.26.0",
+    "babel-eslint": "^8.0.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.3.13",
+    "babel-preset-react-hmre": "^1.0.0",
+    "babel-preset-react-optimize": "^1.0.1",
+    "cross-env": "^3.1.3",
+    "crx": "^3.0.3",
+    "css-loader": "^0.25.0",
+    "css-modules-require-hook": "^4.0.5",
+    "eslint": "^4.12.1",
+    "eslint-config-airbnb": "^12.0.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^1.16.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-react": "^6.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "husky": "^0.14.3",
+    "lint-staged": "^6.0.0",
+    "minimist": "^1.2.0",
+    "postcss-loader": "^1.2.1",
+    "prettier": "^1.8.2",
+    "pug-cli": "^1.0.0-alpha6",
+    "rimraf": "^2.4.3",
+    "shelljs": "^0.7.0",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.0",
+    "webpack-hot-middleware": "^2.10.0",
+    "webpack-httpolyglot-server": "^0.2.0"
   },
   "dependencies": {
-    "bootstrap": "^4.0.0-beta.2",
-    "bootstrap-material-design": "^4.0.0-beta.4",
     "chrome-promise": "^2.1.1",
-    "gulp-sass": "^3.1.0"
+    "classnames": "^2.1.3",
+    "react": "^15.0.2",
+    "react-dock": "^0.2.3",
+    "react-dom": "^15.0.2",
+    "react-redux": "^4.3.0",
+    "redux": "^3.2.1",
+    "redux-thunk": "^2.0.1"
   }
 }

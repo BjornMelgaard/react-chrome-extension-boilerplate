@@ -1,7 +1,11 @@
-.DS_Store*
-ehthumbs.db
-Icon?
-Thumbs.db
 node_modules
-dist
-yarn-error.log
+npm-debug.log
+.DS_Store
+
+build/
+dev/
+
+*.zip
+*.crx
+*.pem
+update.xml

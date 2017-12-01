@@ -1,12 +1,9 @@
 module.exports = {
   parser: 'babel-eslint',
-  extends: ['eslint:recommended', 'standard', 'plugin:import/errors'],
-  plugins: ['standard', 'promise', 'import'],
+  extends: ['airbnb', 'standard', 'plugin:promise/recommended'],
+  plugins: ['standard', 'promise'],
   globals: {
     localStorage: true,
-    Doorkeeper: true,
-    $: true,
-    OAuth2: true,
     chrome: true,
   },
   rules: {
@@ -30,7 +27,5 @@ module.exports = {
         align: 'value',
       },
     ],
-    'no-var': ['error'],
-    'prefer-const': ['error'],
   },
 }
