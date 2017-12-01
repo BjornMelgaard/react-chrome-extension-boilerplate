@@ -1,6 +1,11 @@
 module.exports = {
   parser: 'babel-eslint',
   extends: ['airbnb', 'standard', 'plugin:promise/recommended'],
+  settings: {
+    'import/resolver': {
+      'babel-plugin-root-import': {},
+    },
+  },
   globals: {
     localStorage: true,
     chrome: true,
@@ -11,7 +16,7 @@ module.exports = {
   rules: {
     'space-before-function-paren': ['error', 'never'],
     'comma-dangle': ['error', 'always-multiline'],
-    quotes: ['error', 'single'],
+    quotes: ['error', 'single', { avoidEscape: true }],
     'no-console': 'off',
     'no-multi-spaces': [
       'error',

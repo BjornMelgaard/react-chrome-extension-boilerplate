@@ -7,7 +7,7 @@ chrome.storage.local.get('state', obj => {
   const { state } = obj
   const initialState = JSON.parse(state || '{}')
 
-  const createStore = require('../../app/store/configureStore')
+  const createStore = require('../../app/store/configureStore').default
 
   ReactDOM.render(
     <Root store={createStore(initialState)} />,

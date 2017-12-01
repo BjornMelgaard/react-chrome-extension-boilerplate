@@ -1,8 +1,24 @@
 {
-  "presets": ["@babel/preset-env", "@babel/react"],
+  "presets": [
+    ["@babel/env", {
+      "targets": {
+        "browsers": "last 2 Chrome versions",
+        "node": "current"
+      }
+    }],
+    "@babel/react"
+  ],
+  "plugins": [
+    '@babel/transform-runtime',
+    ["babel-plugin-root-import", {
+      "rootPathSuffix": "."
+    }]
+  ],
   "env": {
     "production": {
-      "presets": ["react-optimize"]
+      "plugins": [
+        "react-optimize"
+      ]
     }
   }
 }

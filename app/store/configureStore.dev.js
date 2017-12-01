@@ -7,7 +7,7 @@ import storage from '../utils/storage'
 
 const composeEnhancers = composeWithDevTools({
   realtime: true,
-  port:     8000,
+  port:     process.env.REMOTE_REDUX_DEVTOOLS_PORT,
 })
 
 const enhancer = composeEnhancers(applyMiddleware(thunk), storage())
