@@ -1,10 +1,12 @@
 module.exports = {
   parser: 'babel-eslint',
   extends: ['airbnb', 'standard', 'plugin:promise/recommended'],
-  plugins: ['standard', 'promise'],
   globals: {
     localStorage: true,
     chrome: true,
+    CHROME_EXTENSION_OAUTH_UID: true,
+    CHROME_EXTENSION_OAUTH_SECRET: true,
+    CHROME_EXTENSION_OAUTH_REDIRECT_URI: true,
   },
   rules: {
     'space-before-function-paren': ['error', 'never'],
@@ -27,5 +29,7 @@ module.exports = {
         align: 'value',
       },
     ],
+
+    'global-require': ['off'],
   },
 }

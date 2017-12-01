@@ -1,31 +1,23 @@
-const path = require('path')
 const webpack = require('webpack')
-const postCSSConfig = require('./postcss.config')
 const Dotenv = require('dotenv-webpack')
+const merge = require('webpack-merge')
 
-const customPath = path.join(__dirname, './customPublicPath')
+const inRoot = require('./shared/inRoot')
+const common = require('./common.config.js')
 
-module.exports = {
+module.exports = merge(common, {
   entry: {
-    todoapp:    [customPath, path.join(__dirname, '../chrome/extension/todoapp')],
-    background: [
-      customPath,
-      path.join(__dirname, '../chrome/extension/background'),
-    ],
-    inject: [customPath, path.join(__dirname, '../chrome/extension/inject')],
+    todoapp:    [inRoot('chrome/extension/todoapp')],
+    background: [inRoot('chrome/extension/background')],
   },
   output: {
-    path:          path.join(__dirname, '../build/js'),
+    path:          inRoot('build/js'),
     filename:      '[name].bundle.js',
     chunkFilename: '[id].chunk.js',
   },
-  postcss() {
-    return postCSSConfig
-  },
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.IgnorePlugin(/[^/]+\/[\S]+.dev$/),
-    new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
       comments:   false,
       compressor: {
@@ -41,27 +33,4 @@ module.exports = {
       path: './.env.prod',
     }),
   ],
-  resolve: {
-    extensions: ['', '.js'],
-  },
-  module: {
-    loaders: [
-      {
-        test:    /\.js$/,
-        loader:  'babel',
-        exclude: /node_modules/,
-        query:   {
-          presets: ['react-optimize'],
-        },
-      },
-      {
-        test:    /\.css$/,
-        loaders: [
-          'style',
-          'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
-          'postcss',
-        ],
-      },
-    ],
-  },
-}
+})

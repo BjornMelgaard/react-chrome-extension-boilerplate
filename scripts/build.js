@@ -1,10 +1,3 @@
-const tasks = require('./tasks')
+require('shelljs/global')
 
-tasks.replaceWebpack()
-console.log('[Copy assets]')
-console.log('-'.repeat(80))
-tasks.copyAssets('build')
-
-console.log('[Webpack Build]')
-console.log('-'.repeat(80))
-exec('webpack --config webpack/prod.config.js --progress --profile --colors')
+exec('NODE_ENV="production" webpack --config webpack/prod.config.js --progress --profile --colors')

@@ -23,28 +23,23 @@ const actionsMap = {
     return state.filter(todo => todo.id !== action.id)
   },
   [ActionTypes.EDIT_TODO](state, action) {
-    return state.map(
-      todo =>
-        (todo.id === action.id
-          ? Object.assign({}, todo, { text: action.text })
-          : todo)
-    )
+    return state.map(todo =>
+      (todo.id === action.id
+        ? Object.assign({}, todo, { text: action.text })
+        : todo))
   },
   [ActionTypes.COMPLETE_TODO](state, action) {
-    return state.map(
-      todo =>
-        (todo.id === action.id
-          ? Object.assign({}, todo, { completed: !todo.completed })
-          : todo)
-    )
+    return state.map(todo =>
+      (todo.id === action.id
+        ? Object.assign({}, todo, { completed: !todo.completed })
+        : todo))
   },
   [ActionTypes.COMPLETE_ALL](state /*, action */) {
     const areAllCompleted = state.every(todo => todo.completed)
     return state.map(todo =>
       Object.assign({}, todo, {
         completed: !areAllCompleted,
-      })
-    )
+      }))
   },
   [ActionTypes.CLEAR_COMPLETED](state /*, action */) {
     return state.filter(todo => todo.completed === false)

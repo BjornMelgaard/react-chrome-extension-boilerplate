@@ -6,18 +6,6 @@
               0 25px 50px 0 rgba(0, 0, 0, 0.1);
 }
 
-.normal input::-webkit-input-placeholder {
-  font-style: italic;
-  font-weight: 300;
-  color: #e6e6e6;
-}
-
-.normal input::-moz-placeholder {
-  font-style: italic;
-  font-weight: 300;
-  color: #e6e6e6;
-}
-
 .normal input::input-placeholder {
   font-style: italic;
   font-weight: 300;
@@ -32,8 +20,5 @@
   font-weight: 100;
   text-align: center;
   color: rgba(175, 47, 47, 0.15);
-  -webkit-text-rendering: optimizeLegibility;
-  -moz-text-rendering: optimizeLegibility;
-  -ms-text-rendering: optimizeLegibility;
   text-rendering: optimizeLegibility;
 }

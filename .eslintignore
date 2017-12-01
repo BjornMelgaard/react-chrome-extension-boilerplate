@@ -9,4 +9,7 @@ dev/
 *.crx
 *.pem
 update.xml
-yarn-error.log
+
+webpack/replace
+webpack/customPublicPath.js
+scripts

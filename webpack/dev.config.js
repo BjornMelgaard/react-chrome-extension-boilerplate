@@ -1,54 +1,37 @@
-const path = require('path')
+const { join } = require('path')
 const webpack = require('webpack')
-const postCSSConfig = require('./postcss.config')
 const Dotenv = require('dotenv-webpack')
+const merge = require('webpack-merge')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const host = 'localhost'
-const port = 3000
-const customPath = path.join(__dirname, './customPublicPath')
-const hotScript =
-  'webpack-hot-middleware/client?path=__webpack_hmr&dynamicPublicPath=true'
+const root = require('./shared/root')
+const common = require('./common.config.js')
 
-const baseDevConfig = () => ({
-  devtool: 'eval-cheap-module-source-map',
+const outputDir = join(root, 'dev')
+const port = 3001
+
+module.exports = merge(common, {
+  devtool: 'inline-source-map',
   entry:   {
-    todoapp: [
-      customPath,
-      hotScript,
-      path.join(__dirname, '../chrome/extension/todoapp'),
-    ],
-    background: [
-      customPath,
-      hotScript,
-      path.join(__dirname, '../chrome/extension/background'),
-    ],
-  },
-  devMiddleware: {
-    publicPath: `http://${host}:${port}/js`,
-    stats:      {
-      colors: true,
-    },
-    noInfo:  true,
-    headers: { 'Access-Control-Allow-Origin': '*' },
-  },
-  hotMiddleware: {
-    path: '/js/__webpack_hmr',
+    todoapp:    [join(root, 'chrome/extension/todoapp')],
+    background: [join(root, 'chrome/extension/background')],
   },
   output: {
-    path:          path.join(__dirname, '../dev/js'),
+    path:          join(outputDir, 'js'),
     filename:      '[name].bundle.js',
     chunkFilename: '[id].chunk.js',
   },
-  postcss() {
-    return postCSSConfig
+  devServer: {
+    contentBase: outputDir,
+    compress:    true,
+    port,
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     new webpack.IgnorePlugin(/[^/]+\/[\S]+.prod$/),
     new webpack.DefinePlugin({
-      __HOST__:      `'${host}'`,
-      __PORT__:      port,
       'process.env': {
         NODE_ENV: JSON.stringify('development'),
       },
@@ -56,44 +39,23 @@ const baseDevConfig = () => ({
     new Dotenv({
       path: './.env.dev',
     }),
+    new CleanWebpackPlugin([outputDir], {
+      root,
+      verbose: true,
+    }),
+    new CopyWebpackPlugin([
+      { from: join(root, 'chrome/manifest.json'), to: outputDir },
+      { context: join(root, 'chrome/assets'), from: '**', to: outputDir },
+    ]),
+    new HtmlWebpackPlugin({
+      template: join(root, 'chrome/views/popup.pug'),
+      chunks:   ['todoapp'],
+      filename: join(outputDir, 'popup.html'),
+    }),
+    new HtmlWebpackPlugin({
+      template: join(root, 'chrome/views/background.pug'),
+      chunks:   ['background'],
+      filename: join(outputDir, 'background.html'),
+    }),
   ],
-  resolve: {
-    extensions: ['', '.js'],
-  },
-  module: {
-    loaders: [
-      {
-        test:    /\.js$/,
-        loader:  'babel',
-        exclude: /node_modules/,
-        query:   {
-          presets: ['react-hmre'],
-        },
-      },
-      {
-        test:    /\.css$/,
-        loaders: [
-          'style',
-          'css?modules&sourceMap&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
-          'postcss',
-        ],
-      },
-    ],
-  },
 })
-
-const injectPageConfig = baseDevConfig()
-injectPageConfig.entry = [
-  customPath,
-  path.join(__dirname, '../chrome/extension/inject'),
-]
-delete injectPageConfig.hotMiddleware
-delete injectPageConfig.module.loaders[0].query
-injectPageConfig.plugins.shift() // remove HotModuleReplacementPlugin
-injectPageConfig.output = {
-  path:     path.join(__dirname, '../dev/js'),
-  filename: 'inject.bundle.js',
-}
-const appConfig = baseDevConfig()
-
-module.exports = [injectPageConfig, appConfig]

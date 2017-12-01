@@ -29,8 +29,7 @@ export default class Footer extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.onShow) {
       this.filterHandlers = FILTERS.map(filter => () =>
-        nextProps.onShow(filter)
-      )
+        nextProps.onShow(filter))
     }
   }
 
