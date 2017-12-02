@@ -11,17 +11,14 @@
     "lint:base": "eslint --ignore-path .eslintignore",
     "lint": "yarn run lint:base .",
     "lint:fix": "yarn run lint:base --fix .",
-    "format:base": "prettier --config './.prettierrc.yaml' --ignore-path './.eslintignore' --write",
+    "format:base":
+      "prettier --config './.prettierrc.yaml' --ignore-path './.eslintignore' --write",
     "format": "yarn run format:base './**/*.{js,jsx,json}'",
     "format-fix": "yarn run format && yarn run lint:fix",
     "precommit": "lint-staged"
   },
   "lint-staged": {
-    "*.js": [
-      "yarn run format:base",
-      "yarn run lint:base --fix",
-      "git add"
-    ]
+    "*.js": ["yarn run format:base", "yarn run lint:base --fix", "git add"]
   },
   "repository": {
     "type": "git",
@@ -50,7 +47,6 @@
     "babel-eslint": "^8.0.3",
     "babel-loader": "^8.0.0-beta.0",
     "babel-plugin-root-import": "^5.1.0",
-    "babel-preset-react-optimize": "git+https://github.com/BjornMelgaard/babel-react-optimize.git#fix/babel-7",
     "clean-webpack-plugin": "^0.1.17",
     "copy-webpack-plugin": "^4.2.3",
     "cross-env": "^5.1.1",

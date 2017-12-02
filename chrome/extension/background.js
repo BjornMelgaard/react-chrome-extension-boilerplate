@@ -1,1 +1,1 @@
-require('./background/badge')
+import './background/badge'

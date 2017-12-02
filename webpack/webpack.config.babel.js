@@ -13,8 +13,8 @@ export default {
   },
   output: {
     path:          join(outputDir),
-    filename:      'js/[name].bundle.js',
-    chunkFilename: 'js/[id].chunk.js',
+    filename:      '[name].bundle.js',
+    chunkFilename: '[id].chunk.js',
   },
   devServer: {
     contentBase: outputDir,

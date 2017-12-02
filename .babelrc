@@ -2,8 +2,7 @@
   "presets": [
     ["@babel/env", {
       "targets": {
-        "browsers": "last 2 Chrome versions",
-        "node": "current"
+        "browsers": "last 2 Chrome versions"
       }
     }],
     "@babel/react"
@@ -15,9 +14,26 @@
     }]
   ],
   "env": {
+    "development": {
+      "presets": [
+        ["@babel/react", {
+          "development": true
+        }]
+      ],
+    },
     "production": {
+      "presets": [
+        ["@babel/env", {
+          "targets": {
+            "browsers": "last 2 Chrome versions",
+            "forceAllTransforms": true
+          }
+        }],
+      ],
       "plugins": [
-        "react-optimize"
+        // extracted from babel-preset-react-optimize
+        "@babel/plugin-transform-react-constant-elements",
+        "@babel/plugin-transform-react-inline-elements"
       ]
     }
   }

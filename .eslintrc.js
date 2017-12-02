@@ -3,6 +3,8 @@ module.exports = {
   extends: ['airbnb', 'standard', 'plugin:promise/recommended'],
   settings: {
     'import/resolver': {
+      // TODO: fix issue eslint-babel-plugin-root-import cant parse .babelrc.js
+      // and convert .babelrc to .babelrc.js
       'babel-plugin-root-import': {},
     },
   },
