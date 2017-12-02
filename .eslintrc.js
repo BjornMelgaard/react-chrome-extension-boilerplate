@@ -36,8 +36,12 @@ module.exports = {
         align: 'value',
       },
     ],
+    'arrow-parens': ['error', 'as-needed'],
 
     'global-require': ['off'],
     'react/jsx-filename-extension': ['error', { extensions: ['.js'] }],
+    // TODO
+    'react/prop-types': ['warn'],
+    'react/forbid-prop-types': ['warn'],
   },
 }

@@ -7,7 +7,7 @@ const devPort = process.env.WEBPACK_DEV_SERVER_PORT
 const devContentSecurityPolicy = [
   `default-src 'self' http://localhost:${devPort};`,
   `script-src 'self' http://localhost:${devPort} 'unsafe-eval';`,
-  `connect-src http://localhost:${devPort};`,
+  `connect-src ws://localhost:${devPort} http://localhost:${devPort};`,
   `style-src * 'unsafe-inline' 'self' http://localhost:${devPort} blob:;`,
   `img-src 'self' http://localhost:${devPort} data:;`,
 ].join(' ')

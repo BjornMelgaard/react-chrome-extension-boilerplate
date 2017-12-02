@@ -11,7 +11,11 @@
     '@babel/transform-runtime',
     ["babel-plugin-root-import", {
       "rootPathSuffix": "."
-    }]
+    }],
+    ["lodash", {
+      "id": ["ramda", "ramda-adjunct", "recompose"]
+    }],
+    ["direct-import", ["material-ui"]]
   ],
   "env": {
     "development": {

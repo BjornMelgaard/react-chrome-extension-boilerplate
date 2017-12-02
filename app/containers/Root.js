@@ -1,22 +1,17 @@
+import * as RE from 'recompose'
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Provider } from 'react-redux'
 import App from './App'
 
-const Root = (props) => {
-  console.log(props)
+const enhance = RE.setPropTypes({
+  store: PropTypes.object.isRequired,
+})
 
-  return <div>asdf</div>
-}
+const Root = ({ store }) => (
+  <Provider store={store}>
+    <App />
+  </Provider>
+)
 
-export default Root
-
-// export default class Root extends Component {
-//   static propTypes = {
-//     store: PropTypes.object.isRequired,
-//   }
-
-//   render() {
-//     const { store } = this.props
-//     return <Provider store={store} />
-//   }
-// }
+export default enhance(Root)

@@ -1,19 +1,22 @@
-import React, { PropTypes } from 'react'
-import { bindActionCreators } from 'redux'
+import * as R from 'ramda'
+import * as RE from 'recompose'
+import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import Header from '../components/Header'
-import MainSection from '../components/MainSection'
-import * as TodoActions from '../actions/todos'
-import style from './App.css'
 
-const propTypes = {
-  todos:   PropTypes.array.isRequired,
-  actions: PropTypes.object.isRequired,
-}
+import * as todoActions from '~/app/actions/todo'
+import { bindActionCreators } from '~/app/utils'
 
-const App = (props) => {
-  const { todos, actions } = props
+const enhance = R.compose(
+  RE.setPropTypes({
+    todos:   PropTypes.array.isRequired,
+    addTodo: PropTypes.func.isRequired,
+  }),
+  connect(R.pick(['todos']), bindActionCreators(todoActions))
+)
 
-  console.log(todos)
-  return <div className={style.normal} />
-}
+const text = R.map(R.prop('text'))
+
+const App = ({ todos, addTodo }) => <div>{text(todos)}</div>
+
+export default enhance(App)

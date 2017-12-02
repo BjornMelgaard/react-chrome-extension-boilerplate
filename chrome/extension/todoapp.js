@@ -13,7 +13,7 @@ const render = (Component, store) => {
   )
 }
 
-chrome.storage.local.get('state', (obj) => {
+chrome.storage.local.get('state', obj => {
   const { state } = obj
   const initialState = JSON.parse(state || '{}')
 
@@ -25,9 +25,7 @@ chrome.storage.local.get('state', (obj) => {
   // Webpack Hot Module Replacement API
   if (module.hot) {
     module.hot.accept('../../app/containers/Root', () => {
-      console.log('module.hot.accept')
       const NextRoot = require('../../app/containers/Root').default
-      console.log(NextRoot)
       render(NextRoot, store)
     })
   }

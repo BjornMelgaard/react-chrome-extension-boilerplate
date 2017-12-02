@@ -1,4 +1,6 @@
-import * as ActionTypes from '../constants/ActionTypes'
+import * as R from 'ramda'
+import { createReducer } from '~/app/utils'
+import * as c from '~/app/constants/todo'
 
 const initialState = [
   {
@@ -8,46 +10,20 @@ const initialState = [
   },
 ]
 
+const maxElem = R.reduce(R.max, -1)
+const ids = R.map(R.prop('id'))
+const findMaxId = R.pipe(ids, maxElem)
+
 const actionsMap = {
-  [ActionTypes.ADD_TODO](state, action) {
-    return [
+  [c.ADD_TODO]: (state, text) =>
+    R.prepend(
       {
-        id:        state.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1,
+        id:        findMaxId(state) + 1,
         completed: false,
-        text:      action.text,
+        text,
       },
-      ...state,
-    ]
-  },
-  [ActionTypes.DELETE_TODO](state, action) {
-    return state.filter(todo => todo.id !== action.id)
-  },
-  [ActionTypes.EDIT_TODO](state, action) {
-    return state.map(todo =>
-      (todo.id === action.id
-        ? Object.assign({}, todo, { text: action.text })
-        : todo))
-  },
-  [ActionTypes.COMPLETE_TODO](state, action) {
-    return state.map(todo =>
-      (todo.id === action.id
-        ? Object.assign({}, todo, { completed: !todo.completed })
-        : todo))
-  },
-  [ActionTypes.COMPLETE_ALL](state /*, action */) {
-    const areAllCompleted = state.every(todo => todo.completed)
-    return state.map(todo =>
-      Object.assign({}, todo, {
-        completed: !areAllCompleted,
-      }))
-  },
-  [ActionTypes.CLEAR_COMPLETED](state /*, action */) {
-    return state.filter(todo => todo.completed === false)
-  },
+      state
+    ),
 }
 
-export default function todos(state = initialState, action) {
-  const reduceFn = actionsMap[action.type]
-  if (!reduceFn) return state
-  return reduceFn(state, action)
-}
+export default createReducer(actionsMap, initialState)

@@ -1,4 +1,5 @@
 import CleanWebpackPlugin from 'clean-webpack-plugin'
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 
 import { root, outputDir } from '~/webpack/lib'
 
@@ -17,5 +18,9 @@ const common = [
   ...manifest,
   ...views,
 ]
+
+if (process.env.ANALYZE) {
+  common.push(new BundleAnalyzerPlugin())
+}
 
 export default common
