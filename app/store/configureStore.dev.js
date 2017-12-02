@@ -1,27 +1,26 @@
-import { applyMiddleware, createStore, compose } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+import logger from 'redux-logger'
 import thunk from 'redux-thunk'
-import { composeWithDevTools } from 'remote-redux-devtools'
-
 import rootReducer from '../reducers'
-import storage from '../utils/storage'
 
-const composeEnhancers = composeWithDevTools({
-  realtime: true,
-  port:     process.env.REMOTE_REDUX_DEVTOOLS_PORT,
-})
-
-const enhancer = composeEnhancers(applyMiddleware(thunk), storage())
-
-export default function(initialState) {
-  const store = createStore(rootReducer, initialState, enhancer)
+/**
+ * Development Redux store
+ * @param  {object} initialState    Initial state of the Redux store
+ * @return {object}                 Redux store
+ */
+export default function configureStore(initialState) {
+  const store = createStore(
+    rootReducer,
+    initialState,
+    applyMiddleware(thunk, logger)
+  )
 
   if (module.hot) {
     module.hot.accept('../reducers', () => {
-      // eslint-disable-next-line global-require
       const nextRootReducer = require('../reducers')
-
       store.replaceReducer(nextRootReducer)
     })
   }
+
   return store
 }

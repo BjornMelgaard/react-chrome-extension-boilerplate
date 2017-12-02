@@ -38,5 +38,6 @@ module.exports = {
     ],
 
     'global-require': ['off'],
+    'react/jsx-filename-extension': ['error', { extensions: ['.js'] }],
   },
 }

@@ -1,8 +1,12 @@
-import React, { Component, PropTypes } from 'react'
+import React from 'react'
 import { Provider } from 'react-redux'
-// import App from './App'
+import App from './App'
 
-const Root = props => <div>asdf</div>
+const Root = (props) => {
+  console.log(props)
+
+  return <div>asdf</div>
+}
 
 export default Root
 

@@ -18,8 +18,9 @@
       "presets": [
         ["@babel/react", {
           "development": true
-        }]
+        }],
       ],
+      "plugins": [ "react-hot-loader/babel" ]
     },
     "production": {
       "presets": [
@@ -31,7 +32,7 @@
         }],
       ],
       "plugins": [
-        // extracted from babel-preset-react-optimize
+        // TODO: fix babel-preset-react-optimize to support babel 7
         "@babel/plugin-transform-react-constant-elements",
         "@babel/plugin-transform-react-inline-elements"
       ]

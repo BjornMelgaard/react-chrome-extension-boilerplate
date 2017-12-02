@@ -1,22 +1,32 @@
 import WriteJsonPlugin from 'write-json-webpack-plugin'
 
-import { root, outputDir, env } from '~/webpack/lib'
+import { env } from '~/webpack/lib'
 
-const contentSecurityPolicy = [
+const devPort = process.env.WEBPACK_DEV_SERVER_PORT
+
+const devContentSecurityPolicy = [
+  `default-src 'self' http://localhost:${devPort};`,
+  `script-src 'self' http://localhost:${devPort} 'unsafe-eval';`,
+  `connect-src http://localhost:${devPort};`,
+  `style-src * 'unsafe-inline' 'self' http://localhost:${devPort} blob:;`,
+  `img-src 'self' http://localhost:${devPort} data:;`,
+].join(' ')
+
+const prodContentSecurityPolicy = [
   "default-src 'self';",
   "script-src 'self';",
   "style-src * 'unsafe-inline';",
   "img-src 'self' data:;",
-  ...env(
-    [
-      // allow remote-redux-devtools
-      'connect-src * data:;',
-    ],
-    []
-  ),
 ].join(' ')
 
+const contentSecurityPolicy = env(
+  devContentSecurityPolicy,
+  prodContentSecurityPolicy
+)
+
 export default [
+  // XXX:
+  // WriteFilePlugin required in development
   new WriteJsonPlugin({
     filename: 'manifest.json',
     pretty:   true,
