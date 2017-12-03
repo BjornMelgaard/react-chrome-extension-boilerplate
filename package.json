@@ -95,6 +95,7 @@
     "prop-types": "^15.6.0",
     "ramda": "^0.25.0",
     "ramda-adjunct": "^2.0.0",
+    "ramda-asserters": "^0.0.12",
     "ramda-universal-trace": "^0.0.4",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",

@@ -5400,6 +5400,10 @@ ramda-adjunct@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ramda-adjunct/-/ramda-adjunct-2.0.0.tgz#0f9ba80b7fe4c464074490490b575a213a91d7b9"
 
+ramda-asserters@^0.0.12:
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/ramda-asserters/-/ramda-asserters-0.0.12.tgz#1b324a46f0eaace522c74bd1acafb8af5c930c05"
+
 ramda-universal-trace@^0.0.4:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/ramda-universal-trace/-/ramda-universal-trace-0.0.4.tgz#1a9a7d752d82aac26e90f834fe12da9d4d623882"

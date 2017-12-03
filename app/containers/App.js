@@ -6,10 +6,10 @@ import { connect } from 'react-redux'
 import { TextField } from 'material-ui'
 import List, { ListItem, ListItemText } from 'material-ui/List'
 
-import * as todoActions from '~/app/actions/todo'
+import * as todoActions from '~/app/actions/todos'
 import { bindActionCreators } from '~/app/utils'
 
-const enterPressed = R.propEq('key', 'Enter')
+const isEnterPressed = R.propEq('key', 'Enter')
 
 const enhance = R.compose(
   connect(R.pick(['todos']), bindActionCreators(todoActions)),
@@ -20,7 +20,8 @@ const enhance = R.compose(
   RE.withState('inputText', 'updateInputText', ''),
   RE.withHandlers({
     onKeyPress: ({ inputText, addTodo, updateInputText }) => e => {
-      if (!enterPressed(e)) return
+      if (!isEnterPressed(e)) return
+      if (R.isEmpty(inputText)) return
       addTodo(inputText)
       updateInputText('')
     },

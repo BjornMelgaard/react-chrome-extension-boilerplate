@@ -1,6 +1,6 @@
 import * as R from 'ramda'
 import { createReducer } from '~/app/utils'
-import * as c from '~/app/constants/todo'
+import * as c from '~/app/constants/todos'
 
 const initialState = [
   {

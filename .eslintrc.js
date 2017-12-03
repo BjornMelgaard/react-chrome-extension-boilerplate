@@ -16,10 +16,10 @@ module.exports = {
     CHROME_EXTENSION_OAUTH_REDIRECT_URI: true,
   },
   rules: {
+    // style
     'space-before-function-paren': ['error', 'never'],
     'comma-dangle': ['error', 'always-multiline'],
     quotes: ['error', 'single', { avoidEscape: true }],
-    'no-console': 'off',
     'no-multi-spaces': [
       'error',
       {
@@ -38,8 +38,12 @@ module.exports = {
     ],
     'arrow-parens': ['error', 'as-needed'],
 
+    // other
+    'no-console': 'off',
+    'import/prefer-default-export': ['warn'],
     'global-require': ['off'],
     'react/jsx-filename-extension': ['error', { extensions: ['.js'] }],
+
     // TODO
     'react/prop-types': ['warn'],
     'react/forbid-prop-types': ['warn'],

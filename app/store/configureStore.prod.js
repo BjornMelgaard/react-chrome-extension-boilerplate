@@ -1,5 +1,9 @@
 import { createStore, applyMiddleware } from 'redux'
-import rootReducer from '../reducers'
+
+import rootReducer from '~/app/reducers'
+
+import logicMiddleware from './shared/logicMiddleware'
+import dispatchStoreCreated from './shared/dispatchStoreCreated'
 
 /**
  * Production Redux store
@@ -7,7 +11,13 @@ import rootReducer from '../reducers'
  * @return {object}                 Redux store
  */
 export default function configureStore(initialState) {
-  const store = createStore(rootReducer, initialState, applyMiddleware())
+  const store = createStore(
+    rootReducer,
+    initialState,
+    applyMiddleware(logicMiddleware)
+  )
+
+  dispatchStoreCreated(store)
 
   return store
 }

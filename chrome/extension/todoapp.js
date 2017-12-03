@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
+import { assertType } from 'ramda-asserters'
 
 import Root from '~/app/containers/Root'
 import chromep from '~/chrome/shared/chromep'
@@ -16,11 +17,9 @@ const render = (Component, store) => {
   )
 }
 
-/**
- * @returns {object}
- */
 async function getSavedState() {
   const state = await chromep.storage.local.get('state')
+  assertType('Object', state)
   return state
 }
 
