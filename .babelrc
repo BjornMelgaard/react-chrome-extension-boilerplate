@@ -8,14 +8,15 @@
     "@babel/react"
   ],
   "plugins": [
-    '@babel/transform-runtime',
+    "@babel/transform-runtime",
     ["babel-plugin-root-import", {
       "rootPathSuffix": "."
     }],
     ["lodash", {
       "id": ["ramda", "ramda-adjunct", "recompose"]
     }],
-    ["direct-import", ["material-ui"]]
+    // TODO: use https://webpack.js.org/guides/tree-shaking/ instead
+    ["direct-import", { "modules": ["material-ui"] }]
   ],
   "env": {
     "development": {
