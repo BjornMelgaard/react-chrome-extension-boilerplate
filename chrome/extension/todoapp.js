@@ -1,7 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
-import Root from '../../app/containers/Root'
+
+import Root from '~/app/containers/Root'
+import chromep from '~/chrome/shared/chromep'
+
 import './todoapp.css'
 
 const render = (Component, store) => {
@@ -13,9 +16,16 @@ const render = (Component, store) => {
   )
 }
 
-chrome.storage.local.get('state', obj => {
-  const { state } = obj
-  const initialState = JSON.parse(state || '{}')
+/**
+ * @returns {object}
+ */
+async function getSavedState() {
+  const state = await chromep.storage.local.get('state')
+  return state
+}
+
+async function init() {
+  const initialState = await getSavedState()
 
   const createStore = require('../../app/store/configureStore').default
   const store = createStore(initialState)
@@ -29,4 +39,6 @@ chrome.storage.local.get('state', obj => {
       render(NextRoot, store)
     })
   }
-})
+}
+
+init()

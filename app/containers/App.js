@@ -12,11 +12,11 @@ import { bindActionCreators } from '~/app/utils'
 const enterPressed = R.propEq('key', 'Enter')
 
 const enhance = R.compose(
+  connect(R.pick(['todos']), bindActionCreators(todoActions)),
   RE.setPropTypes({
     todos:   PropTypes.array.isRequired,
     addTodo: PropTypes.func.isRequired,
   }),
-  connect(R.pick(['todos']), bindActionCreators(todoActions)),
   RE.withState('inputText', 'updateInputText', ''),
   RE.withHandlers({
     onKeyPress: ({ inputText, addTodo, updateInputText }) => e => {

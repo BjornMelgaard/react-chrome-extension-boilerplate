@@ -1,5 +1,5 @@
 import ChromePromise from 'chrome-promise'
 
-const chromep = new ChromePromise({ chrome, Promise })
+const chromep = new ChromePromise()
 
 export default chromep
