@@ -4,17 +4,22 @@ import { env } from '~/webpack/lib'
 
 const devPort = process.env.WEBPACK_DEV_SERVER_PORT
 
+const hmrHttpHost = `http://localhost:${devPort}`
+const hmrWsHost = `ws://localhost:${devPort}`
+const apiHttpHost = process.env.API_HOST
+
 const devContentSecurityPolicy = [
-  `default-src 'self' http://localhost:${devPort};`,
-  `script-src 'self' http://localhost:${devPort} 'unsafe-eval';`,
-  `connect-src ws://localhost:${devPort} http://localhost:${devPort};`,
-  `style-src * 'unsafe-inline' 'self' http://localhost:${devPort} blob:;`,
-  `img-src 'self' http://localhost:${devPort} data:;`,
+  `default-src 'self' ${hmrHttpHost};`,
+  `script-src 'self' ${hmrHttpHost} 'unsafe-eval';`,
+  `connect-src ${hmrWsHost} ${hmrHttpHost} ${apiHttpHost};`,
+  `style-src * 'unsafe-inline' 'self' ${hmrHttpHost} blob:;`,
+  `img-src 'self' ${hmrHttpHost} data:;`,
 ].join(' ')
 
 const prodContentSecurityPolicy = [
   "default-src 'self';",
   "script-src 'self';",
+  `connect-src ${apiHttpHost};`,
   "style-src * 'unsafe-inline';",
   "img-src 'self' data:;",
 ].join(' ')
@@ -47,7 +52,7 @@ export default [
       background: {
         page: 'background.html',
       },
-      permissions:             ['contextMenus', 'tabs', 'storage'],
+      permissions:             ['tabs', 'storage', 'identity'],
       content_security_policy: contentSecurityPolicy,
     },
   }),

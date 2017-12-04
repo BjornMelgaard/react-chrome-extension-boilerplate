@@ -11,6 +11,7 @@ module.exports = {
   globals: {
     localStorage: true,
     chrome: true,
+    URL: true,
     CHROME_EXTENSION_OAUTH_UID: true,
     CHROME_EXTENSION_OAUTH_SECRET: true,
     CHROME_EXTENSION_OAUTH_REDIRECT_URI: true,

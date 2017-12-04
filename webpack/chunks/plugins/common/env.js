@@ -6,6 +6,7 @@ const envVars = fromEnvAll([
   'CHROME_EXTENSION_OAUTH_UID',
   'CHROME_EXTENSION_OAUTH_SECRET',
   'CHROME_EXTENSION_OAUTH_REDIRECT_URI',
+  'API_HOST',
 ])
 
 export default [

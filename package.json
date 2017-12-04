@@ -52,6 +52,7 @@
     "babel-plugin-direct-import": "^0.6.0-beta.1",
     "babel-plugin-lodash": "^3.3.2",
     "babel-plugin-root-import": "^5.1.0",
+    "chokidar": "^1.7.0",
     "clean-webpack-plugin": "^0.1.17",
     "copy-webpack-plugin": "^4.2.3",
     "cross-env": "^5.1.1",
@@ -89,6 +90,7 @@
     "write-json-webpack-plugin": "^1.0.2"
   },
   "dependencies": {
+    "axios": "^0.17.1",
     "babel-runtime": "^6.26.0",
     "chrome-promise": "^2.1.1",
     "material-ui": "^1.0.0-beta.22",
